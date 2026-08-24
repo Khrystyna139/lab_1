@@ -2,25 +2,6 @@ USE MyPersonalLibrary;
 GO
 
 -- ==========================================
--- КРОК 0: СТВОРЕННЯ ЗАХИСТУ ВІД ДУБЛІКАТІВ (UNIQUE)
--- ==========================================
-IF NOT EXISTS (SELECT * FROM sys.indexes WHERE name = 'IX_Authors_FullName')
-    CREATE UNIQUE NONCLUSTERED INDEX IX_Authors_FullName ON Authors(FullName);
-
-IF NOT EXISTS (SELECT * FROM sys.indexes WHERE name = 'IX_Publishers_PubName')
-    CREATE UNIQUE NONCLUSTERED INDEX IX_Publishers_PubName ON Publishers(PubName);
-
-IF NOT EXISTS (SELECT * FROM sys.indexes WHERE name = 'IX_Genres_GenreName')
-    CREATE UNIQUE NONCLUSTERED INDEX IX_Genres_GenreName ON Genres(GenreName);
-
-IF NOT EXISTS (SELECT * FROM sys.indexes WHERE name = 'IX_Tags_TagName')
-    CREATE UNIQUE NONCLUSTERED INDEX IX_Tags_TagName ON Tags(TagName);
-
-IF NOT EXISTS (SELECT * FROM sys.indexes WHERE name = 'IX_Books_Title')
-    CREATE UNIQUE NONCLUSTERED INDEX IX_Books_Title ON Books(Title);
-GO
-
--- ==========================================
 -- КРОК 1: ПОВНЕ ОЧИЩЕННЯ ТА НАПОВНЕННЯ ДОВІДНИКІВ
 -- ==========================================
 DELETE FROM BookTags;
